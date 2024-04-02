@@ -14,7 +14,7 @@ mp_drawing = mp.solutions.drawing_utils
 
 def main():
 
-    cap = cv2.VideoCapture("video.mp4")
+    cap = cv2.VideoCapture("../video.mp4")
 
     while True:
         if cap.get(cv2.CAP_PROP_POS_FRAMES) == cap.get(cv2.CAP_PROP_FRAME_COUNT):
@@ -42,6 +42,10 @@ def main():
             for detection in results_face.detections:
                 # Draw the face annotations on the image
                 mp_drawing.draw_detection(frame, detection)
+                
+                # Get the detection score and display it
+                detection_score = detection.score[0]
+                cv2.putText(frame, f'{detection_score * 100:.2f}%', (int(detection.location_data.relative_bounding_box.xmin * frame.shape[1]), int(detection.location_data.relative_bounding_box.ymin * frame.shape[0]) - 10), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 255, 0), 2)
 
         cv2.imshow("Pose and Face Detector", frame)
 
