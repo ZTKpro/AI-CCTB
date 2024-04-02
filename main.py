@@ -7,14 +7,14 @@ pose = mp_pose.Pose()
 
 # Initialize MediaPipe Face Detection
 mp_face_detection = mp.solutions.face_detection
-face_detection = mp_face_detection.FaceDetection(min_detection_confidence=0.5)
+face_detection = mp_face_detection.FaceDetection(min_detection_confidence=0.1)
 
 # Initialize MediaPipe drawing utility
 mp_drawing = mp.solutions.drawing_utils
 
 def main():
 
-    cap = cv2.VideoCapture("../video.mp4")
+    cap = cv2.VideoCapture("../fvideo.mp4")
 
     while True:
         if cap.get(cv2.CAP_PROP_POS_FRAMES) == cap.get(cv2.CAP_PROP_FRAME_COUNT):
